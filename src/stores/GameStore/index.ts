@@ -163,7 +163,7 @@ class GameStore implements IGameStore {
                         playerWinDiagonal1.push(column);
                     }
 
-                    if (index === 0 && colIndex === 3 || index === 1 && colIndex === 2 || index === 2 && colIndex === 1 || index === 4 && colIndex === 0) {
+                    if (index === 0 && colIndex === 3 || index === 1 && colIndex === 2 || index === 2 && colIndex === 1 || index === 3 && colIndex === 0) {
                         playerWinDiagonal2.push(column);
                     }
                 }
@@ -195,7 +195,7 @@ class GameStore implements IGameStore {
                         compWinDiagonal1.push(column);
                     }
 
-                    if (index === 0 && colIndex === 3 || index === 1 && colIndex === 2 || index === 2 && colIndex === 1 || index === 4 && colIndex === 0) {
+                    if (index === 0 && colIndex === 3 || index === 1 && colIndex === 2 || index === 2 && colIndex === 1 || index === 3 && colIndex === 0) {
                         compWinDiagonal2.push(column);
                     }
                 }
@@ -222,6 +222,7 @@ class GameStore implements IGameStore {
             this.game.winningPlayer = "Computer";
         }
 
+        console.log(compWinDiagonal2, playerWinDiagonal2);
         if (this.game.winningPlayer === undefined && this.game.moves.length >= 16) {
             this.game.winningPlayer = "Draw";
         }
