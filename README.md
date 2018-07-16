@@ -4,6 +4,16 @@ The application has a model and store called GameStoreModel and GameStore. The G
 
 Three react components make up the ui for the game. GameStart lets you pick the starting player. Game is the game board which shows the current player's turn, board, and buttons to drop tokens. The GameComplete component shows the winner or draw scenarios and the final outcome of the board. 
 
+### Start/Test Application
+
+You will need to cd to the location of the application to run it.
+
+#### Run
+```
+yarn install
+npm run start
+```
+
 ### Packages Used
 * Typescript-React-Starter: https://github.com/Microsoft/TypeScript-React-Starter
 * Mobx: https://github.com/mobxjs/mobx
