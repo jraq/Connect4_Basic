@@ -1,5 +1,5 @@
 import { IGameModel, Player } from "../../model/GameModel/interfaces";
-import { Row } from "../../../node_modules/@types/reactstrap";
+import { Row } from "reactstrap";
 
 export interface IGameStore {
     game : IGameModel,

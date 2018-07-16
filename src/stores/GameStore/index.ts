@@ -4,7 +4,7 @@ import { Player } from "../../model/GameModel/interfaces";
 import { IGameStore } from "./interfaces";
 import axois from 'axios';
 
-// tslint:disable-next-line:max-classes-per-file
+
 class GameStore implements IGameStore {
 
     @observable
@@ -226,7 +226,6 @@ class GameStore implements IGameStore {
             this.game.winningPlayer = "Draw";
         }
     }
-
 }
 
 export default GameStore;
