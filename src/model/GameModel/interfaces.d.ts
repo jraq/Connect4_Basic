@@ -1,7 +1,9 @@
-export type Player = "Computer" | "Player";
+export type Player = "Computer" | "Player" | "New";
+export type Winner = Player | "Draw";
+
 
 export interface IGameModel {
-    gameWon : boolean,
+    winningPlayer : Winner
     startingPlayer : Player,
     moves: Array<number>,
     

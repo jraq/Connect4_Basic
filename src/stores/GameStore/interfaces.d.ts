@@ -3,7 +3,6 @@ import { Row } from "../../../node_modules/@types/reactstrap";
 
 export interface IGameStore {
     game : IGameModel,
-    turn : Player
-    makeMove : (row : number) => boolean
+    makeMove : (row : number) => void
     
 }
