@@ -28,7 +28,7 @@ class Game extends React.Component<IGameCompleteProps> {
             <Container>
             <Row className="text-center">
                 <Col>
-                    {game.game.winningPlayer === "Computer" && <h3>Better Luck Next Time: {game.game.winningPlayer}!</h3>}
+                    {game.game.winningPlayer === "Computer" && <h3>Winner: {game.game.winningPlayer}!</h3>}
                     {game.game.winningPlayer === "Player" && <h3>Winner: {game.game.winningPlayer}!</h3>}
                     {game.game.winningPlayer === "Draw" && <h3>Draw!</h3>}
                 </Col>

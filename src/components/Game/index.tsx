@@ -36,7 +36,7 @@ class Game extends React.Component<IGameProps> {
 
         return (
             <Container>  
-                <h2 className="text-center">{game.game.turn}</h2>
+                <h2 className={"text-center " + (game.game.turn === "Computer" ? "redText" : "blueText")}>{game.game.turn}{"'s"} turn </h2>
                     <Row>
                         <Col><Button name="0" disabled={game.game.column0Full || game.game.turn === "Computer"} onClick={this.makeMove}>Drop Token</Button></Col>
                         <Col><Button name="1" disabled={game.game.column1Full || game.game.turn === "Computer"} onClick={this.makeMove}>Drop Token</Button></Col>
@@ -44,10 +44,11 @@ class Game extends React.Component<IGameProps> {
                         <Col><Button name="3" disabled={game.game.column3Full || game.game.turn === "Computer"} onClick={this.makeMove}>Drop Token</Button></Col>
                     </Row>
                 
-                {game.board.slice().reverse().map((item, index) => {
+                {game.game.board.slice().reverse().map((item, index) => {
                     return <Row key={index}>
                     {item.row.map((column, colIndex) => {
                         return <Col key={colIndex}>
+
                             {RenderColumn(column)}
                         </Col>
                     })}
@@ -61,12 +62,12 @@ class Game extends React.Component<IGameProps> {
 const RenderColumn = (column: Place) => {
     switch (column) {
         case "Computer":
-            return <div>Computer</div>
+            return <div className="circleRed"></div>
         case "Player":
-            return <div>Player</div>
+            return <div className="circleBlue"></div>
         case "Empty":
         default:
-            return <div>Empty</div>
+            return <div className="circle"></div>
             break;
     }
 }

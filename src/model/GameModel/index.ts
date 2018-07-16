@@ -1,9 +1,17 @@
 import { computed, observable } from 'mobx';
-import { IGameModel, Player, Winner } from "./interfaces";
+import { IGameModel, Player, Winner, Place } from "./interfaces";
+
+export class BoardRow {
+    public row: Place[] = observable.array([])
+}
 
 
+// tslint:disable-next-line:max-classes-per-file
 export class GameModel implements IGameModel {
     
+    @observable
+    public board: BoardRow[] = observable.array([])
+
     @observable
     public startingPlayer: Player;
     
