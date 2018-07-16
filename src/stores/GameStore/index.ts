@@ -1,14 +1,8 @@
 import { action, observable } from "mobx"
-import GameModel from "../../model/GameModel";
+import GameModel, { BoardRow } from "../../model/GameModel";
 import { Player } from "../../model/GameModel/interfaces";
 import { IGameStore } from "./interfaces";
 import axois from 'axios';
-
-export type Place = Player | "Empty";
-
-class BoardRow {
-    public row: Place[] = observable.array([])
-}
 
 // tslint:disable-next-line:max-classes-per-file
 class GameStore implements IGameStore {
@@ -228,7 +222,7 @@ class GameStore implements IGameStore {
             this.game.winningPlayer = "Computer";
         }
 
-        if (this.game.moves.length >= 16) {
+        if (this.game.winningPlayer === undefined && this.game.moves.length >= 16) {
             this.game.winningPlayer = "Draw";
         }
     }

@@ -2,7 +2,8 @@ import { inject, observer } from 'mobx-react';
 import * as React from 'react';
 import { IGameProps } from './interfaces';
 import { Container, Row, Col, Button } from 'reactstrap';
-import { Place } from '../../stores/GameStore';
+import { Place } from '../../model/GameModel/interfaces';
+
 
 
 @inject("game", "routing")
