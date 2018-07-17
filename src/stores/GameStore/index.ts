@@ -8,6 +8,12 @@ import axois from 'axios';
 class GameStore implements IGameStore {
 
     @observable
+    public rowCount : number  = 4;
+
+    @observable 
+    public columnCount : number = 4;
+
+    @observable
     public game: GameModel = new GameModel();
 
     @observable
@@ -75,6 +81,7 @@ class GameStore implements IGameStore {
 
     @action
     private updateBoard = () => {
+        const currrentMove = { x : 0, y: 0}
         let row0Count = 0;
         let row1Count = 0;
         let row2Count = 0;
@@ -83,22 +90,30 @@ class GameStore implements IGameStore {
         this.game.moves.forEach((item) => {
             switch (item) {
                 case 0: {
-                    this.game.board[row0Count].row[item] = currentPlayer;
+                    this.game.board[row0Count].row[item] = currentPlayer;          
+                    currrentMove.x = row0Count;
+                    currrentMove.y = item;
                     row0Count++;
                 }
                     break;
                 case 1: {
                     this.game.board[row1Count].row[item] = currentPlayer;
+                    currrentMove.x = row1Count;
+                    currrentMove.y = item;
                     row1Count++;
                 }
                     break;
                 case 2: {
                     this.game.board[row2Count].row[item] = currentPlayer;
+                    currrentMove.x = row2Count;
+                    currrentMove.y = item;
                     row2Count++;
                 }
                     break;
                 case 3: {
                     this.game.board[row3Count].row[item] = currentPlayer;
+                    currrentMove.x = row3Count;
+                    currrentMove.y = item;
                     row3Count++;
                 }
                     break;
@@ -109,11 +124,90 @@ class GameStore implements IGameStore {
 
             currentPlayer = currentPlayer === "Computer" ? "Player" : "Computer";
         });
-        this.gameWon();
+        this.gameWon(currrentMove);
     }
 
     @action
-    private gameWon() {
+    private gameWon(currrentMove : any) {
+   
+        const playerWInDiagonalNew : Player[] = [];
+        
+
+        // Vertical check
+        let verticalCount = 0
+        this.game.board.forEach(element => {
+            element.row.forEach((column, colIndex) => {
+                if(column === "Player") {
+                    verticalCount = verticalCount + 1
+                    console.log(verticalCount);
+                    if(verticalCount === 4){
+                        // Winner
+                        console.log("I've Won")
+                        return;
+                    }
+                } else {
+                    verticalCount = 0;
+                }
+            })
+            verticalCount = 0;
+        });
+
+        // Horizontal Check
+        let horizontalCheck = 0;
+        for (let index = 0; index < this.rowCount; index++) {
+            
+            if(this.game.board[index].row[currrentMove.y] === "Player"){
+                horizontalCheck = horizontalCheck + 1;
+                console.log("Horizontal", horizontalCheck);
+                if(horizontalCheck === 4) {
+                    console.log("I've won")
+                }
+            } else{
+                horizontalCheck = 0;
+            }
+            
+        }
+
+        // Diagoal
+        for (let row = 0; row < this.rowCount - 3; row++)
+        {
+            for (let col = 0; col < this.columnCount - 3; col++)
+            {       
+                if ("Player" === this.game.board[row].row[col] &&
+                    "Player" === this.game.board[row + 1].row[col + 1] && 
+                    "Player" === this.game.board[row + 2].row[col + 2] && 
+                    "Player" === this.game.board[row + 3].row[col + 3])
+                {
+                    console.log("I've won diagonal 1")
+                }
+            }
+        }
+
+        // Diagonal two
+        for (let row = 0; row < this.rowCount - 3; row++)
+        {
+            for (let col = 3; col < this.columnCount; col++)
+            {
+
+                if ("Player" === this.game.board[row].row[col] &&
+                    "Player" === this.game.board[row + 1].row[col - 1] && 
+                    "Player" === this.game.board[row + 2].row[col - 2] && 
+                    "Player" === this.game.board[row + 3].row[col - 3])
+                {
+                    console.log("I've won diagonal 2")
+                }
+            }
+        }
+
+        this.game.board.forEach((item, index) => {
+            item.row.forEach((column, colIndex) => {
+                    
+            });
+        });
+
+       
+  
+        console.log(playerWInDiagonalNew);
 
 
         let playerWinHorizontal: Player[] = [];
