@@ -1,4 +1,4 @@
-# 98point6 Drop Token
+#Drop Token
 
 The application has a model and store called GameStoreModel and GameStore. The GameStoreModel contains all the information about the current game. The GameStore handles the actions around updating moves, the board, or win conditions.
 
